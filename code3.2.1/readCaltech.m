@@ -4,6 +4,8 @@ annotations = fullfile('data-USA','annotations','set00','V000',{names.name});
 names = dir('data-USA/images/set00/V000/*.jpg');
 images = fullfile('data-USA','images','set00','V000',{names.name});
 
+counter = 0;
+
 for i=1:numel(annotations)
     fileID = fopen(annotations{i},'r');
     fgetl(fileID);
@@ -18,6 +20,16 @@ for i=1:numel(annotations)
         if strcmp(a{1}{1},'person')
                 bbox = [str2num(a{1}{2}),str2num(a{1}{3}),str2num(a{1}{4}),str2num(a{1}{5})]
                 rectangle('Position',bbox,'EdgeColor','g');
+                width = bbox(3);
+                height = bbox(4);
+                ratio = 0.3; %width/height;
+                newWidth = ratio*height;
+                newX = bbox(1)+(width-newWidth)/2;
+                newBBox = [newX,bbox(2),newWidth,bbox(4)];
+                im2 = imcrop(im,newBBox);
+                savePositiveDir = strcat('myPositives/',num2str(counter),'.png');
+                imwrite(im2,savePositiveDir);
+                counter = counter + 1;
         end
         line = fgetl(fileID);
     end
