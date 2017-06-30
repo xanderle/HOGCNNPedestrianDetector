@@ -28,11 +28,16 @@ for i=1:numel(annotations)
                 newBBox = [newX,bbox(2),newWidth,bbox(4)];
                 im2 = imcrop(im,newBBox);
                 savePositiveDir = strcat('myPositives/',num2str(counter),'.png');
+                rectangle('Position', bbox, 'FaceColor','k','LineWidth',2);
                 imwrite(im2,savePositiveDir);
                 counter = counter + 1;
-        end
+        end    
         line = fgetl(fileID);
     end
+    f = getframe(gca);
+    [X,map] = frame2im(f);
+    negativeDir = strcat('myNegatives/',num2str(i),'.png');
+    imwrite(X,negativeDir);
     pause(0.5)
     fclose(fileID);
 end
