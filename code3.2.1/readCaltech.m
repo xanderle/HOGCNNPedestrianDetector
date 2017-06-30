@@ -3,7 +3,7 @@ annotations = fullfile('data-USA','annotations','set00','V000',{names.name});
 
 names = dir('data-USA/images/set00/V000/*.jpg');
 images = fullfile('data-USA','images','set00','V000',{names.name});
-
+counter = 0
 for i=1:numel(annotations)
     fileID = fopen(annotations{i},'r');
     fgetl(fileID);
