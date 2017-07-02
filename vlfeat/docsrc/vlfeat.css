@@ -48,6 +48,8 @@ code a {
     line-height: 1px ;
 }
 .standout {
+    margin: 1em ! important ;
+    font-family: Helvetica, sans-serif ;
     font-style: italic ;
     color: red ! important ;
 }
@@ -80,7 +82,6 @@ code a {
 /* t r b l */
 #sidebar ul li {
     display: inline-block ;
-    color: white ;
     position: relative ;
     list-style-type: none ;
     padding: 10px 15px 10px 15px ;
@@ -92,21 +93,19 @@ code a {
     background-color: rgb(207,122,48) ;
 }
 #sidebar ul li ul {
+    visibility: hidden ;
     position: absolute ;
-    width: 513px ;
     top: 34px ;
     left: -1px ;
-    visibility: hidden ;
-    font-size: 0px ;
+    width: 225px ;
+    background-color: #183a60 ;
 }
 #sidebar ul li ul li {
-    width: 225px ;
+    display: block ;
     margin: 0 ;
-    margin-right: -1px ;
+    padding-left: 15px ;
     border: 1px solid white ;
     border-bottom: none ;
-    background-color: #183a60 ;
-    font-size: 12px ;
 }
 #sidebar ul li ul li ul {
     top: -1px ;
@@ -116,13 +115,6 @@ code a {
 #sidebar li:hover > ul {
     visibility: visible ;
 }
-#sidebar li:hover {
-    color: rgb(207,122,48) ;
-}
-#sidebar li.active:hover {
-    color: white ;
-}
-
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*                                                           Header */
@@ -137,12 +129,11 @@ code a {
     margin-right: auto ;
     padding: 20px 30px ;
 }
-#header .searchbox {
+#header #cse-search-box {
     float: right ;
     margin-right: 1em ;
     margin-top: auto ;
     margin-bottom: auto ;
-    width: 25em ;
 }
 #header h1 {
     margin: 0 ;

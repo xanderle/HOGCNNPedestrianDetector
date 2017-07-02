@@ -1,4 +1,4 @@
-setup ;
+%setup ;
 
 % Training cofiguration
 targetClass = 1 ;
@@ -24,14 +24,14 @@ trainBoxImages = {} ;
 trainBoxLabels = [] ;
 
 % Create negative data
-names = dir('data/myNegatives/*.png') ;
-trainImages = fullfile('data', 'myNegatives', {names.name}) ;
-annotNames = dir('data/myNegatives/annotations/*.txt');
-trainAnnotations = fullfile('data','myNegatives','annotations',{annotNames.name});
+names = dir('code3.2.1/data-USA/myNegatives/*.png') ;
+trainImages = fullfile('code3.2.1', 'data-USA', 'myNegatives', {names.name}) ;
+annotNames = dir('code3.2.1/data-USA/annotations/*.txt');
+trainAnnotations = fullfile('code3.2.1','data-USA','annotations',{annotNames.name});
 
 % Create positive data
-names = dir('data/myPositives/*.png') ;
-names = fullfile('data', 'myPositives', {names.name}) ;
+names = dir('code3.2.1/data-USA/myPositives/*.png') ;
+names = fullfile('code3.2.1', 'data-USA', 'myPositives', {names.name}) ;
 for i=1:numel(names)
   im = imread(names{i}) ;
   im = imresize(im, [128 42.67]) ;

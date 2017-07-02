@@ -22,10 +22,10 @@ function path = vl_setup(varargin)
 % This file is part of the VLFeat library and is made available under
 % the terms of the BSD license (see the COPYING file).
 
-noprefix = false;
-quiet = true;
-xtest = false;
-demo = false;
+noprefix = false ;
+quiet = true ;
+xtest = false ;
+demo = false ;
 
 for ai=1:length(varargin)
   opt = varargin{ai} ;

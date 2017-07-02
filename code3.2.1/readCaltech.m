@@ -6,7 +6,7 @@ annotFull = fullfile('data-USA','annotations',{setDir.name});
 counter = 0;
 
 for i=1:5
-    video = dir(imgFull{i})
+    video = dir(setFull{i})
     video(1:2) = [];
     videoFull = fullfile(setFull{i},{video.name});
     annotVid = fullfile(annotFull{i},{video.name});
