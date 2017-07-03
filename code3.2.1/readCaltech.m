@@ -46,7 +46,7 @@ for i=1:5
             end
             f = getframe(gca);
             [X,map] = frame2im(f);
-            negativeDir = strcat('myNegatives/',num2str(i),'.png');
+            negativeDir = strcat('myNegatives/',num2str(k),'.png');
             imwrite(X,negativeDir);
             fclose(fileID);
         end
