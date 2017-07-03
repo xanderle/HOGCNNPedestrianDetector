@@ -1,1 +1,1 @@
-run vlfeat\toolbox\vl_setup
+run vlfeat/toolbox/vl_setup
