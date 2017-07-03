@@ -4,21 +4,31 @@ setFull = fullfile('data-USA','images',{setDir.name});
 
 annotFull = fullfile('data-USA','annotations',{setDir.name});
 counter = 0;
-
-for i=1:5
-    video = dir(setFull{i})
-    video(1:2) = [];
+countNeg = 0;
+for i=1:6
+    video = dir(setFull{i});
+    
+    if video(1).name == '.'
+        video(1) = [];
+    end
+    if video(1).name == '..'
+        video(1) = [];
+    end
+    if strcmp(video(1).name,'.DS_Store')
+        video(1) = [];
+    end
     videoFull = fullfile(setFull{i},{video.name});
     annotVid = fullfile(annotFull{i},{video.name});
     for j=1:numel(video)
-        names = dir([annotVid{i} '/*.txt']);
-        annotations = fullfile(annotVid{i},{names.name});
-        names = dir([videoFull{i} '/*.jpg']);
-        images = fullfile(videoFull{i},{names.name});
+        names = dir([annotVid{j} '/*.txt']);
+        annotations = fullfile(annotVid{j},{names.name});
+        names = dir([videoFull{j} '/*.jpg']);
+        images = fullfile(videoFull{j},{names.name});
         for k=1:numel(annotations)
             fileID = fopen(annotations{k},'r');
             fgetl(fileID);
             line = fgetl(fileID);
+            
             im = imread(images{k});
             imshow(im);
             while ischar(line)
@@ -40,13 +50,13 @@ for i=1:5
                     rectangle('Position', bbox, 'FaceColor','k','LineWidth',2);
                     imwrite(im2,savePositiveDir);
                     counter = counter + 1;
-                    rectangle('Position', bbox, 'FaceColor','k','LineWidth',2);
                 end
                 line = fgetl(fileID);
             end
             f = getframe(gca);
             [X,map] = frame2im(f);
-            negativeDir = strcat('myNegatives/',num2str(k),'.png');
+            negativeDir = strcat('myNegatives/',num2str(countNeg),'.png');
+            countNeg=countNeg+1;
             imwrite(X,negativeDir);
             fclose(fileID);
         end
