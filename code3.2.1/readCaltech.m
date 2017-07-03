@@ -20,7 +20,7 @@ for i=1:5
             fgetl(fileID);
             line = fgetl(fileID);
             im = imread(images{k});
-            %imshow(im);
+            imshow(im);
             while ischar(line)
                 a = textscan(line,'%s');
                 if a{1}{6} == 0
@@ -39,9 +39,14 @@ for i=1:5
                     savePositiveDir = strcat('myPositives/',num2str(counter),'.png');
                     imwrite(im2,savePositiveDir);
                     counter = counter + 1;
+                    rectangle('Position', bbox, 'FaceColor','k','LineWidth',2);
                 end
                 line = fgetl(fileID);
             end
+            f = getframe(gca);
+            [X,map] = frame2im(f);
+            negativeDir = strcat('myNegatives/',num2str(k),'.png');
+            imwrite(X,negativeDir);
             
             fclose(fileID);
         end
